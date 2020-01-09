@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "ce878c1d-1e25-4042-a5e1-70919c85211a",
+		"name": "rabbit-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-position",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer abc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:5001/position",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"position"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send-position",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "074ff65d-70d7-4793-89e0-4d7c11bf817a",
+						"exec": [
+							"var current_timestamp = new Date();\r",
+							"postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer abc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"latitude\": 40.447307,\r\n    \"longitude\": -80.006841,\r\n    \"timestamp\": \"{{current_timestamp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/position",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"position"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

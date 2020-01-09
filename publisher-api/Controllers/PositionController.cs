@@ -36,7 +36,7 @@ namespace publisher_api.Controllers
         public IActionResult SavePosition(Position gps)
         {
             _positionService.Save(gps);
-            return Ok();
+            return Ok(new { success = true });
         }
     }
 }
